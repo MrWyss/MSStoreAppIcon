@@ -16,7 +16,7 @@ docker run --rm --name my_container -p 5000:5000 ghcr.io/mrwyss/msstoreappicon:l
 
 ## How to use it
 
-1. Find the store app id with winget (``winget search "Remote Help"``) or in Intune
+1. Find the store app id with winget (``winget search "Microsoft Remote Desktop" --source msstore"``) or in Intune
 2. Copy the app ID
 3. Paste the app ID in the input field
 4. Hower over the icon and click to download
