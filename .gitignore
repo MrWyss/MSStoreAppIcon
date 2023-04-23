@@ -1,0 +1,21 @@
+# Python-related files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment-related files
+venv/
+*.env
+env/
+
+# IDE-related files
+.vscode/
+.idea/
+
+# Flask-related files
+*.log
+
+# Other
+*.DS_Store
+
