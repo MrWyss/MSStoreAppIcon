@@ -8,11 +8,11 @@ This Flask app allows you to download icon files for a given Microsoft Store app
 
 1. Run the app with docker:
 
-```bash
-docker run --rm --name my_container -p 5000:5000 ghcr.io/mrwyss/msstoreappicon:latest
-```
+    ```bash
+    docker run --rm --name my_container -p 5000:5000 ghcr.io/mrwyss/msstoreappicon:latest
+    ```
 
-2. browse to http://localhost:5000
+2. browse to <http://localhost:5000>
 
 ## Requirements
 
