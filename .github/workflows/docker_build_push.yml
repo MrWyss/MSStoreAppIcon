@@ -17,6 +17,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       
+      - name: Downcase IMAGE_NAME
+        run: echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+      
+      - name: Get the latest tag name GIT_TAG
+        run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
+      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -28,14 +34,8 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Downcase IMAGE_NAME
-        run:  echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
-      
-      - name: Get the latest tag name GIT_TAG
-        run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
-      
+          password: ${{ secrets.GITHUB_TOKEN }}    
+     
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
