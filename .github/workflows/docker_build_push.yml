@@ -1,11 +1,11 @@
 name: Create and publish a Docker image
 
-on: workflow_dispatch
-  inputs:
-    tag:
-      description: 'Tag to use for the image'
-      required: true
-
+on: 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to use for the image'
+        required: true
 env:
   REGISTRY: ghcr.io
   GITHUB_REPOSITORY: ${{ github.repository }}
