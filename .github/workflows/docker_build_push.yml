@@ -5,8 +5,7 @@ on: workflow_dispatch
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  USER_NAME: mrwyss
-  
+
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -32,5 +31,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ env.USER_NAME }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.IMAGE_NAME }}:latest
           platforms: linux/arm64,linux/arm/v7,linux/amd64
