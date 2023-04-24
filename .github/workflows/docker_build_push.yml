@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  GITHUB_REPOSITORY: ${{ github.repository }}
 
 jobs:
   build-and-push-image:
@@ -26,7 +26,11 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
+      
+      - name: downcase REPO
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY,,}" >>${IMAGE_NAME}
+      
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
