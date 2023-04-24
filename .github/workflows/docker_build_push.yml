@@ -31,14 +31,18 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Downcase IMAGE_NAME
-        run: |
-          echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+        run:  echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+      
+      - name: Get the latest tag name GIT_TAG
+        run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ${{ env.IMAGE_NAME }}:latest
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.GIT_TAG }}
           platforms: linux/arm64          
           #platforms: linux/arm64,linux/arm/v7,linux/amd64
