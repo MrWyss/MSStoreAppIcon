@@ -13,20 +13,20 @@
         <input type="text" id="appid" name="appid" placeholder="Enter App ID">
         <button type="submit" class="button">Get Icon</button>
     </form>
-    <form method="GET" class="button-form">
+    <form method="POST" class="button-form">
         <input type="hidden" name="clear" value="1">
         <button type="submit" class="button">Clear List</button>
     </form>
     <ul id="icons-list">
         {% for icon in icons %}
-            <li>
-                <a href="{{ icon.download_link }}" download="{{ icon.appid }}.png">
-                    <h3>{{ icon.appid }}</h3>
-                    {{ icon.preview_link | safe }}
-                </a>
-            </li>
+        <li>
+            <a href="{{ icon.image_data }}" download="{{ icon.appid }}.png">
+                <h3>{{ icon.appid }}</h3>
+                {{ icon.preview_image | safe }}
+            </a>
+        </li>
         {% endfor %}
-    </ul> 
+    </ul>
 </body>
 
 </html>
